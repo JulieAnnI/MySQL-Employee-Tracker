@@ -10,8 +10,8 @@ CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    role_id INTEGER,
-    manager_id INTEGER,
+    role_id INT NOT NULL,
+    manager_id INT,
     PRIMARY KEY (id)
 );
 
@@ -27,8 +27,8 @@ CREATE TABLE role (
 
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL,
-    deparment_id INT,
+    salary DECIMAL NOT NULL,
+    deparment_id INT NOT NULL,
     PRIMARY KEY (id)
 );
 

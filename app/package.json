@@ -1,5 +1,5 @@
 {
-  "name": "mysql-employee-tracker",
+  "name": "app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,16 +9,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JulieAnnI/MySQL-Employee-Tracker.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JulieAnnI/MySQL-Employee-Tracker/issues"
-  },
-  "homepage": "https://github.com/JulieAnnI/MySQL-Employee-Tracker#readme"
+  "license": "ISC"
 }
