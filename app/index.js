@@ -307,3 +307,8 @@ async function update() {
         throw error;
     }
 }
+//Exit function
+function exit() {
+    console.log("Goodbye!");
+    return connection.end();
+}
