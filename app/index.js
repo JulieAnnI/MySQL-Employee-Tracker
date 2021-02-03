@@ -2,7 +2,7 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 //Constants of choices
-const ADD = "ADD", VIEW = "VIEW", DELETE = "DELETE", EXIT = "EXIT";
+const ADD = "ADD", VIEW = "VIEW", UPDATE = "UPDATE EMPLOYEE ROLE", EXIT = "EXIT";
 const EMPLOYEE = "EMPLOYEE", ROLE = "ROLE",  DEPARTMENT = "DEPARTMENT";
 
 //Connecting to database
@@ -23,13 +23,13 @@ connection.connect((error) =>{
 
 //Initialize function
 async function init() {
-    console.log("Initializing");
+    console.log("Main menu");
     try {
         let answer = await inquirer.prompt({
             name: "addViewDelete",
             type: "list",
             message: "What would you like to  add, view, delete or exit from the Employee Database?",
-            choices: [ADD, VIEW, DELETE, EXIT]
+            choices: [ADD, VIEW, UPDATE, EXIT]
         });
         
         switch (answer.addViewDelete) {
@@ -38,8 +38,8 @@ async function init() {
                 return add();
             case VIEW:
                 return view();
-            case DELETE:
-                return deletion();
+            case UPDATE:
+                return update();
             case EXIT:
                 return exit();
         }
@@ -205,3 +205,68 @@ async function addDepartment() {
         throw error;
     }
 }
+
+//Choices for which table to view to in Database
+async function view() {
+    console.log("Add to Employee Database")
+    try {
+        let answer = await inquirer.prompt({
+            name: "tableName",
+            type: "list",
+            message: "Which table would you like to view?",
+            choices: [EMPLOYEE, ROLE, DEPARTMENT]
+        
+        });
+        switch (answer.tableName) {
+            
+            case EMPLOYEE:
+                return viewEmployee();
+            case ROLE:
+                return viewRole();
+            case DEPARTMENT:
+                return viewDepartment();
+
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+//Functions to view all tables
+async function viewEmployee() {
+    try {
+        connection.query(
+            "SELECT * FROM employee", function (err, res) {
+                console.table(res)
+                init();
+            });
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+async function viewRole() {
+    try {
+        connection.query(
+            "SELECT * FROM role", function (err, res) {
+                console.table(res)
+                init();
+            });
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function viewDepartment() {
+    try {
+        connection.query(
+            "SELECT * FROM department", function (err, res) {
+                console.table(res)
+                init();
+            });
+    } catch (error) {
+        throw error;
+    }
+}
+
