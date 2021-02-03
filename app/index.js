@@ -125,7 +125,7 @@ async function addEmployee() {
         throw error;
     }
 }
-
+//Add Role Function
 async function addRole() {
     console.log("Add Role");
     try {
@@ -171,7 +171,7 @@ async function addRole() {
         throw error;
     }
 }
-
+//Add Department Function
 async function addDepartment() {
     console.log("Add Role");
     try {
@@ -270,3 +270,40 @@ async function viewDepartment() {
     }
 }
 
+//Function updates employee's role id
+async function update() {
+    console.log("Update employee's role")
+    try {
+        let answer = await inquirer.prompt([
+            {
+                name: "idEmployee",
+                type: "input",
+                message: "Enter ID number for the Employee to change their role."
+            
+            },
+            {
+                name: "newRole",
+                type: "input",
+                message: "Enter this Employee's new role ID number."
+            }
+
+        ]);
+    connection.query(
+        "UPDATE employee SET ? WHERE ? ",
+        [
+            {
+                role_id: answer.newRole
+            },
+            {
+                id: answer.idEmployee
+            }],
+            error => {
+                if (error) throw error;
+                console.log ("Role was updated!")
+                return init(); 
+            }
+        );
+    } catch (error) {
+        throw error;
+    }
+}
